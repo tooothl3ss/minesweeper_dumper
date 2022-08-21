@@ -21,6 +21,7 @@ Expert:
 ![](screens/4.jpg)
 
 ## Added function to mark minies
+Default work = autosolver
 
 ![](screens/7.jpg)
 ![](screens/8.jpg)
