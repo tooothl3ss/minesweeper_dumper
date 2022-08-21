@@ -19,3 +19,9 @@ Expert:
 
 ![](screens/3.jpg)
 ![](screens/4.jpg)
+
+## Added function to mark minies
+
+![](screens/7.jpg)
+![](screens/8.jpg)
+![](screens/9.jpg)

@@ -64,7 +64,7 @@ def dumpMap(process, baseaddres, lenstr, hight):
 
 if __name__=='__main__':
 
-    PROCESS_ID = 2056 # From T askManager for Notepad.exe
+    PROCESS_ID = 2848 # From T askManager for Notepad.exe
     PROCESS_HEADER_ADDR = 0x01005340 # From SysInternals VMMap utility
     PROCESS_VM_READ = 0x0010
     PROCESS_VM_WRITE = 0x0020 | 0x0008
@@ -77,8 +77,6 @@ if __name__=='__main__':
     k32.WriteProcessMemory.restype = BOOL
     processRead = k32.OpenProcess(PROCESS_VM_READ, 0, PROCESS_ID)
     processWrite = k32.OpenProcess(PROCESS_VM_WRITE, 0, PROCESS_ID)
-
-    #writeMemory(process=processWrite,process_addres=0x01005382, buff=b'\x8C')
     lenmines = int.from_bytes(readMemory(process=processRead,process_addres=0x01005194,vAddres=1,strlen=1)[0], "big")
     print("[*] Count of mines: {}".format(lenmines))
     baseaddres = PROCESS_HEADER_ADDR
@@ -88,5 +86,7 @@ if __name__=='__main__':
         tmp1 = dumpMap(process=processRead,lenstr=11,baseaddres=PROCESS_HEADER_ADDR,hight=11)
     elif lenmines == 40:
         tmp1 = dumpMap(process=processRead,lenstr=18,baseaddres=PROCESS_HEADER_ADDR,hight=18)
+    print("[*] Marking minies...")
+    markMines(process=processWrite, tmap=tmp1) #default marks = autosolver / 0
+    print("[*] Printing map...")
     print(createMap(tmp1))
-    markMines(process=processWrite, tmap=tmp1)
